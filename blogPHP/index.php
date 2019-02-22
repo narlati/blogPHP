@@ -35,6 +35,29 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
+        elseif ($_GET['action'] == 'inscription') {
+            inscriptionPage();
+        }
+        elseif ($_GET['action'] == 'inscriptionUser') {
+            if (!empty($_POST['pseudo']) && !empty($_POST['mail']) && !empty($_POST['password']) && !empty($_POST['password2'])) {
+                verificationInformations($_POST['pseudo'], $_POST['password'], $_POST['password2'], $_POST['mail']);
+            }
+            else {
+                throw new Exception('formulaire incomplet ici.');
+            }
+        }
+        elseif ($_GET['action'] == 'connection') {
+            connectionPage();
+        }
+        elseif ($_GET['action'] == 'connectionUser')
+        {
+            if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
+                verificationConnectionLog($_POST['pseudo'], $_POST['password']);
+            }
+            else {
+                throw new Exception('erreur identifiant et/ou mot de passe.');
+            }
+        }
     }
     else {
         listPosts();

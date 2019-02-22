@@ -2,8 +2,9 @@
 
 <?php ob_start(); ?>
     <h1>Mon super blog !</h1>
+<a href="index.php?action=connection&amp">Connection</a>
+<a href="index.php?action=inscription&amp">Inscription</a>
     <p>Derniers billets du blog :</p>
-
 
 <?php
 while ($data = $posts->fetch())
