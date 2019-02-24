@@ -4,6 +4,8 @@
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('model/InscriptionManager.php');
+require_once('model/AdminManager.php');
+
 
 function listPosts()
 {
@@ -118,7 +120,6 @@ function verificationConnectionLog($pseudo, $password)
     }
     else {
         header('Location: index.php');
-
     }
 }
 
@@ -133,5 +134,24 @@ function disconnectUser()
         header('Location: index.php');
     }
 
+}
 
+function newChapter()
+{
+    require('view/frontend/redactionView.php');
+}
+
+function postNewChapter($title, $content)
+{
+    $InscriptionManager = new \OpenClassrooms\Blog\Model\AdminManager();
+    $title = strip_tags($title);
+    $content = strip_tags($content);
+    $affectedLines = $InscriptionManager->postNewChapter($title, $content);
+
+    if ($affectedLines === false) {
+        throw new Exception('Impossible d\'ajouter le chapitre!');
+    }
+    else {
+        header('Location: index.php');
+    }
 }

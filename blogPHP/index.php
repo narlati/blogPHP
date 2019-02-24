@@ -63,6 +63,17 @@ try {
         {
             disconnectUser();
         }
+        elseif ($_GET['action'] == 'newChapter') {
+            newChapter();
+        }
+        elseif ($_GET['action'] == 'postNewChapter') {
+            if (!empty($_POST['title']) && !empty($_POST['content'])) {
+                postNewChapter($_POST['title'], $_POST['content']);
+            }
+            else {
+                throw new Exception('Tous les champs ne sont pas remplis !');
+            }
+        }
     }
     else {
         listPosts();

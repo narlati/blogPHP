@@ -2,8 +2,6 @@
 
 namespace OpenClassrooms\Blog\Model;
 
-use mysql_xdevapi\Exception;
-
 require_once("Manager.php");
 
 class InscriptionManager extends Manager

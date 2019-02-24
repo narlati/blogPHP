@@ -8,8 +8,8 @@ if (isset($_SESSION) && !empty  ($_SESSION))
     ?>
     <a href="index.php?action=disconnect&amp">Deconnection</a>
     <p>Bonjour <?php echo $_SESSION['pseudo'] ?> !</p>
-    <a href=""index.php?action=newChapter&amp">Ecriture nouveau chapitre <br></a>
-    <a href=""index.php?action=manageComments&amp">Gestion commentaires</a>
+    <a href="index.php?action=newChapter&amp">Ecriture nouveau chapitre <br></a>
+    <a href="index.php?action=manageComments&amp">Gestion commentaires</a>
     <?php
 }
 else { ?>
