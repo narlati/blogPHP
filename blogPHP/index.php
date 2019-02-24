@@ -2,6 +2,7 @@
 require('controller/frontend.php');
 
 try {
+    session_start();
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'listPosts') {
             listPosts();
@@ -57,6 +58,10 @@ try {
             else {
                 throw new Exception('erreur identifiant et/ou mot de passe.');
             }
+        }
+        elseif ($_GET['action'] == 'disconnect')
+        {
+            disconnectUser();
         }
     }
     else {

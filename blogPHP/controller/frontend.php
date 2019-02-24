@@ -118,5 +118,20 @@ function verificationConnectionLog($pseudo, $password)
     }
     else {
         header('Location: index.php');
+
     }
+}
+
+function disconnectUser()
+{
+    $deconnectionUser = new \OpenClassrooms\Blog\Model\InscriptionManager();
+    if (!$deconnectionUser->disconnectUser())
+    {
+        throw new Exception('Vous n etes pas co.');
+    }
+    else {
+        header('Location: index.php');
+    }
+
+
 }

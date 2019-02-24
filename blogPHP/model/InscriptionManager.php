@@ -2,6 +2,8 @@
 
 namespace OpenClassrooms\Blog\Model;
 
+use mysql_xdevapi\Exception;
+
 require_once("Manager.php");
 
 class InscriptionManager extends Manager
@@ -62,9 +64,8 @@ class InscriptionManager extends Manager
         {
             if ($isPasswordCorrect)
             {
-                session_start();
                 $_SESSION['id'] = $result['id'];
-                $_SESSION['pseudo'] = $result['pseudo'];
+                $_SESSION['pseudo'] = $pseudo;
             }
             else
             {
@@ -73,4 +74,18 @@ class InscriptionManager extends Manager
         }
         return TRUE;
     }
+
+    public function DisconnectUser():bool
+    {
+        if(isset($_SESSION['id']) && !empty($_SESSION['id']))
+        {
+            session_destroy();
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
+
+    }
+
 }
