@@ -3,11 +3,10 @@
 <?php ob_start(); ?>
 
 <h1>Mon super blog !</h1>
-<form action="index.php?action=postNewChapter&amp;" method="post">
+<form action="index.php?action=updateChapter&amp;id=<?= $post['id'] ?>" method="post">
 
-
-    <textarea class="myeditable-textarea" name="title">Modifiez le titre en cliquant ici.</textarea>
-    <textarea class="myeditable-textarea" name="content">Ecrivez votre chapitre en cliquant ici.</textarea>
+    <textarea class="myeditable-textarea" name="title"> <?= $post['title'] ?></textarea>
+    <textarea class="myeditable-textarea" name="content"> <?= $post['content'] ?></textarea>
     <div>
         <input type="submit" />
     </div>

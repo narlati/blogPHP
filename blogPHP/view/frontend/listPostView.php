@@ -25,16 +25,18 @@ while ($data = $posts->fetch())
     ?>
     <div class="news">
         <h3>
-            <?= htmlspecialchars($data['title']) ?>
+            <?= $data['title'] ?>
             <em>le <?= $data['creation_date_fr'] ?></em>
             <em> par <?= $data['autor'] ?></em>
         </h3>
 
-        <p>
-            <?= nl2br(htmlspecialchars($data['content'])) ?>
+        <div>
+            <?= $data['content'] ?>
             <br />
-            <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a></em>
-        </p>
+            <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a>
+            <a href="index.php?action=update&amp;id=<?= $data['id'] ?>">Modifier ce chapitre <br></a>
+            <a href="index.php?action=delete&amp;id=<?= $data['id'] ?>">Supprimer ce chapitre</a></em>
+        </div>
     </div>
     <?php
 }

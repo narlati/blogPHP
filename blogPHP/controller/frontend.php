@@ -85,7 +85,7 @@ function verificationInformations($pseudo, $password, $password2, $email)
         throw new Exception('L\'adresse mail est incorrect.');
     }
 
-    if (!$checkmail = $inscriptionManager->isMailUsed($email))
+    if (!$checkMail = $inscriptionManager->isMailUsed($email))
     {
         throw new Exception('Cette adresse mail est deja prise :( .');
     }
@@ -144,8 +144,6 @@ function newChapter()
 function postNewChapter($title, $content)
 {
     $InscriptionManager = new \OpenClassrooms\Blog\Model\AdminManager();
-    $title = strip_tags($title);
-    $content = strip_tags($content);
     $affectedLines = $InscriptionManager->postNewChapter($title, $content);
 
     if ($affectedLines === false) {
@@ -154,4 +152,33 @@ function postNewChapter($title, $content)
     else {
         header('Location: index.php');
     }
+}
+
+function update()
+{
+    $updateManager = new \OpenClassrooms\Blog\Model\PostManager();
+    $post = $updateManager->getPost($_GET['id']);
+
+    require('view/frontend/updateView.php');
+}
+
+function updateChapter($title, $content, $postid)
+{
+    $InscriptionManager = new \OpenClassrooms\Blog\Model\AdminManager();
+    $affectedLines = $InscriptionManager->updateChapter($title, $content, $postid);
+
+    if ($affectedLines === false) {
+        throw new Exception('Impossible d\'ajouter le chapitre!');
+    }
+    else {
+        header('Location: index.php');
+    }
+}
+
+function delete($postId)
+{
+    $InscriptionManager = new \OpenClassrooms\Blog\Model\AdminManager();
+    $affectedChapter = $InscriptionManager->deleteChapter($postId);
+
+    header('Location: index.php');
 }

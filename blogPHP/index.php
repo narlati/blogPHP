@@ -64,14 +64,58 @@ try {
             disconnectUser();
         }
         elseif ($_GET['action'] == 'newChapter') {
-            newChapter();
+            if (!isset($_SESSION['id']))
+            {
+                connectionPage();
+            } else {
+                newChapter();
+            }
         }
         elseif ($_GET['action'] == 'postNewChapter') {
-            if (!empty($_POST['title']) && !empty($_POST['content'])) {
-                postNewChapter($_POST['title'], $_POST['content']);
+            if (!isset($_SESSION['id']))
+            {
+                connectionPage();
+            } else {
+                if (!empty($_POST['title']) && !empty($_POST['content'])) {
+                    postNewChapter($_POST['title'], $_POST['content']);
+                }
+                else {
+                    throw new Exception('Tous les champs ne sont pas remplis !');
+                }
+            }
+        }
+        elseif ($_GET['action'] == 'update') {
+            if (!isset($_SESSION['id']))
+            {
+                connectionPage();
+            } else {
+                if (isset($_GET['id']) && $_GET['id'] > 0) {
+                    update();
+                }
+                else {
+                    throw new Exception('Aucun identifiant de billet envoyé');
+                }
+            }
+        }
+        elseif ($_GET['action'] == 'updateChapter') {
+            if (!isset($_SESSION['id']))
+            {
+                connectionPage();
+            } else {
+                if (!isset($_SESSION['id'])) {
+                    connectionPage();
+                } else {
+                    updateChapter($_POST['title'], $_POST['content'], ($_GET['id']));
+                }
+            }
+        }
+
+        elseif ($_GET['action'] == 'delete') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                delete($_GET['id']);
             }
             else {
-                throw new Exception('Tous les champs ne sont pas remplis !');
+                throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
     }
