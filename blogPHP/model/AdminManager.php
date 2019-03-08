@@ -40,5 +40,25 @@ class AdminManager extends Manager
 
         return $affectedLines;
     }
+
+    public function deleteComment($commentId)
+    {
+        $db = $this->dbConnect();
+        $comment = $db->prepare('DELETE FROM comment WHERE id=:idComment');
+        $comment->bindParam("idComment", $commentId);
+        $affectedLines = $comment->execute();
+
+        return $affectedLines;
+    }
+
+    public function resetReport($commentId)
+    {
+        $db = $this->dbConnect();
+        $comment = $db->prepare('UPDATE comment set report = 0 WHERE id=:idComment');
+        $comment->bindParam("idComment", $commentId);
+        $affectedLines = $comment->execute();
+
+        return $affectedLines;
+    }
 }
 

@@ -1,6 +1,4 @@
-
-<h1>Mon super blog !</h1>
-
+<?php ob_start(); ?>
 <p><a href="index.php">ACCUEIL</a></p>
 
 <p>Remplissez le formulaire suivant pour vous inscrire :</p>
@@ -26,5 +24,8 @@
         <input type="submit" value="Confirmez l'inscription." />
     </div>
 </form>
+<?php $content = ob_get_clean(); ?>
+
+<?php require('view/frontend/template.php'); ?>
 
 

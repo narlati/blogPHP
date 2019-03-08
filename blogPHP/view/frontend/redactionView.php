@@ -1,17 +1,13 @@
-<?php $title = 'Mon blog'; ?>
-
 <?php ob_start(); ?>
 
-<h1>Mon super blog !</h1>
-<form action="index.php?action=postNewChapter&amp;" method="post">
+<p class="btn" xmlns="http://www.w3.org/1999/html"> Ecrivez votre prochain chapitre :</p>
 
-
-    <textarea class="myeditable-textarea" name="title">Modifiez le titre en cliquant ici.</textarea>
-    <textarea class="myeditable-textarea" name="content">Ecrivez votre chapitre en cliquant ici.</textarea>
-    <div>
-        <input type="submit" />
-    </div>
-
+<form action="index.php?action=postNewChapter&amp;" method="post" class="needs-validation offset-md-3 col-md-6">
+    <input type="text" name="title" class="form-control" placeholder="Titre du chapitre">
+    <br>
+    <textarea class="myeditable-textarea form-control" name="content" >Ecrivez votre chapitre en cliquant ici.</textarea>
+    <br>
+    <input type="submit" class="btn btn-success btn-lg offset-md-5"/>
 </form>
 
 <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=d5q1jdupsghfho1anh2ljbby59ele3799np15qugih4dmm07"></script>
@@ -23,7 +19,8 @@
             /\<xsl\:[^>]+\>/g,  // Protect <xsl:...>
             /<\?php.*?\?>/g  // Protect php code
         ],
-        content_css : 'public/css/style.css'
+        invalid_styles : 'background-color,color,font-size,padding,margin,text-align,font-family',
+        paste_as_text: true
     });
 </script>
 

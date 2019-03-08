@@ -1,52 +1,47 @@
-<?php $title = htmlspecialchars($post['title']);?>
-
 <?php ob_start(); ?>
-    <h1>Mon super blog !</h1>
-    <p><a href="index.php">Retour à la liste des billets</a></p>
+    <div class="offset-md-3 col-md-6 blog-main">
+        <div class="blog-post">
+            <h2 class="blog-post-title"><?= $post['title'] ?></h2>
+            <p class="blog-post-meta">le <?= $post['creation_date_fr'] ?></p>
+            <p><?= $post['content'] ?></p>
+        </div>
 
-    <div class="news">
-        <h3>
-            <?= $post['title'] ?>
-            <em>le <?= $post['creation_date_fr'] ?></em>
-        </h3>
-
-        <p>
-            <?= $post['content'] ?>
-        </p>
-    </div>
-
-    <h2>Commentaires</h2>
 
     <form action="index.php?action=addComment&amp;id=<?= $post['id']?>" method="post">
-        <div>
-            <label for="author">Auteur</label><br/>
-            <input type="text" id="author" name="author" />
+        <div class="form-group">
+            <label for="author"></label>
+            <input type="text" class="form-control" id="author" name="author" placeholder="votre pseudo"/>
         </div>
-        <div>
-            <label for="comment">Commentaire</label><br/>
-            <textarea id="comment" name="comment"></textarea>
+        <div class="form-group">
+            <label for="comment">Commentaire</label>
+            <textarea id="comment" class="form-control" name="comment" placeholder="Votre commentaire"></textarea>
         </div>
-        <div>
-            <input type="submit" />
-        </div>
+        <button type="submit" class="btn btn-primary">Validez</button>
     </form>
 
-<?php
-while ($comment = $comments->fetch())
-{
-    ?>
-    <p><strong><?= htmlspecialchars($comment['name']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-    <p><?= nl2br(htmlspecialchars($comment['content'])) ?></p>
-
-
-
-    <form action="index.php?action=reportComment&amp;id=<?= $comment['id'] ?>" method="post">
-        <input type="submit" value="Signalez le commentaire">
-    </form>
+    <br>
 
     <?php
-}
-?>
+    while ($comment = $comments->fetch())
+    {
+        ?>
+    <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+
+        <div class="col-md-12 px-0">
+
+        <p><strong><?= htmlspecialchars($comment['name']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
+        <p><?= nl2br(htmlspecialchars($comment['content'])) ?></p>
+
+        <form action="index.php?action=reportComment&amp;id=<?= $comment['id']?>&amp;idp=<?= $post['id']?>" method="post">
+            <input type="submit" value="Signalez le commentaire">
+        </form>
+        </div>
+    </div>
+
+<?php
+    }
+    ?>
+</div>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('view/frontend/template.php'); ?>

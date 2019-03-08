@@ -32,4 +32,13 @@ class CommentManager extends Manager
 
         return $report;
     }
+
+    public function getReportComment()
+    {
+        $db = $this->dbConnect();
+        $comments = $db->prepare('SELECT id, name, content, DATE_FORMAT(date, \'%d/%m/%Y\') AS comment_date_fr,report FROM comment WHERE report > 0');
+        $comments->execute();
+
+        return $comments;
+    }
 }

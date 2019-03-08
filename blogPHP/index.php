@@ -1,5 +1,5 @@
 <?php
-require('controller/frontend.php');
+require('controller/controller.php');
 
 try {
     session_start();
@@ -9,7 +9,7 @@ try {
         }
         elseif ($_GET['action'] == 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                post();
+                post($_GET['id']);
             }
             else {
                 throw new Exception('Aucun identifiant de billet envoyé');
@@ -29,8 +29,8 @@ try {
             }
         }
         elseif ($_GET['action'] == 'reportComment') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    reportComment($_GET['id']);
+            if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['idp']) && $_GET['idp'] > 0) {
+                    reportComment($_GET['id'], $_GET['idp']);
             }
             else {
                 throw new Exception('Aucun identifiant de billet envoyé');
@@ -102,20 +102,42 @@ try {
             {
                 connectionPage();
             } else {
-                if (!isset($_SESSION['id'])) {
-                    connectionPage();
-                } else {
                     updateChapter($_POST['title'], $_POST['content'], ($_GET['id']));
-                }
             }
         }
-
         elseif ($_GET['action'] == 'delete') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                delete($_GET['id']);
+            if (!isset($_SESSION['id'])) {
+                connectionPage();
+            } else {
+                if (isset($_GET['id']) && $_GET['id'] > 0) {
+                    delete($_GET['id']);
+                }
+                else {
+                    throw new Exception('Aucun identifiant de billet envoyé');
+                }
             }
-            else {
-                throw new Exception('Aucun identifiant de billet envoyé');
+
+        }
+        elseif ($_GET['action'] == 'manageComments') {
+            if (!isset($_SESSION['id']))
+            {
+                connectionPage();
+            } else {
+                manageComment();
+            }
+        }
+        elseif ($_GET['action'] == 'deleteComment') {
+            if (!isset($_SESSION['id'])) {
+                connectionPage();
+            } else {
+                deleteComment($_GET['id']);
+            }
+        }
+        elseif ($_GET['action'] == 'reset') {
+            if (!isset($_SESSION['id'])) {
+                connectionPage();
+            } else {
+                resetReport($_GET['id']);
             }
         }
     }

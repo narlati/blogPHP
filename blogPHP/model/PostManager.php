@@ -9,7 +9,7 @@ class PostManager extends Manager
     public function getPosts()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, title, content, DATE_FORMAT(date, \'%d/%m/%Y\') AS creation_date_fr, autor FROM article');
+        $req = $db->query('SELECT id, title, content, DATE_FORMAT(date, \'%d/%m/%Y\') AS creation_date_fr, autor FROM article ORDER BY id DESC');
         return $req;
     }
 
