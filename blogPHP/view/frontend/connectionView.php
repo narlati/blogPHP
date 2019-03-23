@@ -6,7 +6,7 @@
             <input type="text" id="pseudo" name="pseudo" class="form-control" placeholder="PSEUDO"/><br>
             <label for="password" class="sr-only">MOT DE PASSE</label>
             <input type="password" id="password" name="password" class="form-control" placeholder="MOT DE PASSE"/><br>
-            <input type="submit" value="CONNECTION" class="btn btn-lg btn-primary btn-block"/>
+            <input type="submit" value="CONNEXION" class="btn btn-lg btn-primary btn-block"/>
     </form>
 
 <?php $content = ob_get_clean(); ?>

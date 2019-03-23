@@ -12,7 +12,7 @@ try {
                 post($_GET['id']);
             }
             else {
-                throw new Exception('Aucun identifiant de billet envoyé');
+                throw new Exception('bad url');
             }
         }
         elseif ($_GET['action'] == 'addComment') {
@@ -25,7 +25,7 @@ try {
                 }
             }
             else {
-                throw new Exception('Aucun identifiant de billet envoyé');
+                throw new Exception('bad url');
             }
         }
         elseif ($_GET['action'] == 'reportComment') {
@@ -33,7 +33,7 @@ try {
                     reportComment($_GET['id'], $_GET['idp']);
             }
             else {
-                throw new Exception('Aucun identifiant de billet envoyé');
+                throw new Exception('bad url');
             }
         }
         elseif ($_GET['action'] == 'inscription') {
@@ -77,6 +77,7 @@ try {
                 connectionPage();
             } else {
                 if (!empty($_POST['title']) && !empty($_POST['content'])) {
+
                     postNewChapter($_POST['title'], $_POST['content']);
                 }
                 else {
@@ -93,7 +94,7 @@ try {
                     update();
                 }
                 else {
-                    throw new Exception('Aucun identifiant de billet envoyé');
+                    throw new Exception('bad url');
                 }
             }
         }
@@ -113,10 +114,9 @@ try {
                     delete($_GET['id']);
                 }
                 else {
-                    throw new Exception('Aucun identifiant de billet envoyé');
+                    throw new Exception('bad url');
                 }
             }
-
         }
         elseif ($_GET['action'] == 'manageComments') {
             if (!isset($_SESSION['id']))
@@ -140,11 +140,25 @@ try {
                 resetReport($_GET['id']);
             }
         }
+        else {
+            throw new Exception('bad url');
+        }
     }
     else {
         listPosts();
     }
 }
 catch(Exception $e) {
-    echo 'Erreur : ' . $e->getMessage();
+    if ($e->getMessage() === 'bad url')
+    {
+        require('view/frontend/errorView.php');
+    }
+    elseif ($e->getMessage() === 'erreur identifiant et/ou mot de passe.')
+    {
+        connectionPage();
+    }
+    elseif ($e->getMessage() === 'Tous les champs ne sont pas remplis !')
+    {
+        require('view/frontend/redactionView.php');
+    }
 }

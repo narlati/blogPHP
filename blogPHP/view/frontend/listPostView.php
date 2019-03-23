@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 
-    <p class="btn">Derniers billets du blog :</p>
+    <p class="btn">Derniers chapitres du livre :</p>
 
 <?php
 while ($data = $posts->fetch())

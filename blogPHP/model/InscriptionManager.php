@@ -8,8 +8,7 @@ class InscriptionManager extends Manager
 {
     public function postNewUser($pseudo, $pass_hash, $email)
     {
-        $db = $this->dbConnect();
-        $newUser = $db->prepare('INSERT INTO user(pseudo, password, mail) VALUES(?, ?, ?)');
+        $newUser = $this->getConnexion()->prepare('INSERT INTO user(pseudo, password, mail) VALUES(?, ?, ?)');
         $affectedLines = $newUser->execute(array($pseudo, $pass_hash, $email));
 
         return $affectedLines;
@@ -17,8 +16,7 @@ class InscriptionManager extends Manager
 
     public function isLoginUsed($pseudo) :bool
     {
-        $db = $this->dbConnect();
-        $loginAlreadyUsed = $db->prepare('SELECT * FROM user WHERE pseudo = :pseudo');
+        $loginAlreadyUsed = $this->getConnexion()->prepare('SELECT * FROM user WHERE pseudo = :pseudo');
         $loginAlreadyUsed->bindParam(":pseudo", $pseudo);
         $loginAlreadyUsed->execute();
 
@@ -31,8 +29,7 @@ class InscriptionManager extends Manager
 
     public function isMailUsed($mail) :bool
     {
-        $db = $this->dbConnect();
-        $mailAlreadyUsed = $db->prepare('SELECT * FROM user WHERE mail = :mail');
+        $mailAlreadyUsed = $this->getConnexion()->prepare('SELECT * FROM user WHERE mail = :mail');
         $mailAlreadyUsed->bindParam(":mail", $mail);
         $mailAlreadyUsed->execute();
 
@@ -45,8 +42,7 @@ class InscriptionManager extends Manager
 
     public function verifyLogin($pseudo, $password)
     {
-        $db = $this->dbConnect();
-        $isLoginExisting = $db->prepare('SELECT id, password FROM user WHERE pseudo = :pseudo');
+        $isLoginExisting = $this->getConnexion()->prepare('SELECT id, password FROM user WHERE pseudo = :pseudo');
         $isLoginExisting->bindParam(":pseudo", $pseudo);
         $isLoginExisting->execute();
         $result = $isLoginExisting->fetch();
@@ -54,9 +50,9 @@ class InscriptionManager extends Manager
         $isPasswordCorrect = password_verify($password, $result['password']);
 
         if (!$result)
-        {
-            return FALSE;
-        }
+    {
+        return FALSE;
+    }
 
         else
         {

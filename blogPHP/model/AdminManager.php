@@ -8,8 +8,8 @@ class AdminManager extends Manager
 {
     public function postNewChapter($title, $content)
     {
-        $db = $this->dbConnect();
-        $chapter = $db->prepare('INSERT INTO article(title, content, date) VALUES(?, ?, NOW())');
+
+        $chapter = $this->getConnexion()->prepare('INSERT INTO article(title, content, date) VALUES(?, ?, NOW())');
         $affectedLines = $chapter->execute(array($title, $content));
 
         return $affectedLines;
@@ -17,8 +17,7 @@ class AdminManager extends Manager
 
     public function updateChapter($title, $content, $postid)
     {
-        $db = $this->dbConnect();
-        $chapter = $db->prepare('UPDATE article SET title = :title, content = :content WHERE id=:id');
+        $chapter = $this->getConnexion()->prepare('UPDATE article SET title = :title, content = :content WHERE id=:id');
         $chapter->bindParam(":title", $title);
         $chapter->bindParam(":content", $content);
         $chapter->bindParam(":id", $postid);
@@ -29,12 +28,11 @@ class AdminManager extends Manager
 
     public function deleteChapter($postId)
     {
-        $db = $this->dbConnect();
-        $chapter = $db->prepare('DELETE FROM article WHERE id=:idChapter');
+        $chapter = $this->getConnexion()->prepare('DELETE FROM article WHERE id=:idChapter');
         $chapter->bindParam("idChapter", $postId);
         $affectedLines = $chapter->execute();
 
-        $comment = $db->prepare('DELETE FROM comment WHERE id_article=:idChapter');
+        $comment = $this->getConnexion()->prepare('DELETE FROM comment WHERE id_article=:idChapter');
         $comment->bindParam("idChapter", $postId);
         $affectedLines = $comment->execute();
 
@@ -43,8 +41,7 @@ class AdminManager extends Manager
 
     public function deleteComment($commentId)
     {
-        $db = $this->dbConnect();
-        $comment = $db->prepare('DELETE FROM comment WHERE id=:idComment');
+        $comment = $this->getConnexion()->prepare('DELETE FROM comment WHERE id=:idComment');
         $comment->bindParam("idComment", $commentId);
         $affectedLines = $comment->execute();
 
@@ -53,8 +50,7 @@ class AdminManager extends Manager
 
     public function resetReport($commentId)
     {
-        $db = $this->dbConnect();
-        $comment = $db->prepare('UPDATE comment set report = 0 WHERE id=:idComment');
+        $comment = $this->getConnexion()->prepare('UPDATE comment set report = 0 WHERE id=:idComment');
         $comment->bindParam("idComment", $commentId);
         $affectedLines = $comment->execute();
 

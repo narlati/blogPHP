@@ -4,17 +4,13 @@
     <meta charset="utf-8" />
     <title></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="public/css/style.css" rel="stylesheet" />
-
+    <link href="public/css/style.css" rel="stylesheet"/>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
     <a class="navbar-brand" href="index.php">Jean Forteroche</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class=" navbar-collapse" id="navbar">
         <ul class="navbar-nav mr-auto">
 <?php
 if (isset($_SESSION) && !empty  ($_SESSION))
@@ -43,6 +39,9 @@ else { ?>
         </ul>
     </div>
 </nav>
+<div class="bg">
+    <img src="public/images/background.png" alt="background-writer-content">
+</div>
 <div class="main">
 <?= $content ?>
 </div>

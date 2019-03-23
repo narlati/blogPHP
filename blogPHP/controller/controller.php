@@ -21,9 +21,8 @@ function post($id)
     $commentManager = new \OpenClassrooms\Blog\Model\CommentManager();
     if (!$post = $postManager->getPost($id))
     {
-        throw new Exception('erreur, l\'article n\'existe pas');
+        throw new Exception('bad url', 404);
     }
-
     $comments = $commentManager->getComments($id);
 
     require('view/frontend/postView.php');
@@ -155,6 +154,7 @@ function newChapter()
 function postNewChapter($title, $content)
 {
     $InscriptionManager = new \OpenClassrooms\Blog\Model\AdminManager();
+
     $affectedLines = $InscriptionManager->postNewChapter($title, $content);
 
     if ($affectedLines === false) {
@@ -176,6 +176,10 @@ function update()
 function updateChapter($title, $content, $postid)
 {
     $InscriptionManager = new \OpenClassrooms\Blog\Model\AdminManager();
+    if (!$title || $content)
+    {
+        throw new Exception('Tous les champs ne sont pas remplis !');
+    }
     $affectedLines = $InscriptionManager->updateChapter($title, $content, $postid);
 
     if ($affectedLines === false) {

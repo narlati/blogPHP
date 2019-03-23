@@ -12,6 +12,22 @@ a
     margin: 0 auto;
 }
 
+.bg {
+    max-height: 600px;
+    max-width: 2048px;
+    overflow: hidden;
+}
+ img {
+     height: 100%;
+     width: 103%;
+ }
 .main {
-    padding-top: 56px;
+    padding-top: 10px;
+}
+
+.error {
+    background-color: #333;
+    height : 400px;
+    padding-top: 200px;
+    font-size: 20px;
 }
