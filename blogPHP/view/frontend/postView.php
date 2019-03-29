@@ -1,15 +1,17 @@
 <?php ob_start(); ?>
-    <div class="offset-md-3 col-md-6 blog-main">
+<div class="shadow-lg p-3 mb-5 bg-white rounded offset-md-1 col-md-10">
+    <div class="jumbotron offset-md-2 col-md-8 bg-white rounded">
+
         <div class="blog-post">
-            <h2 class="blog-post-title"><?= $post['title'] ?></h2>
-            <p class="blog-post-meta">le <?= $post['creation_date_fr'] ?></p>
+            <h2 class="blog-post-title"><i class="far fa-newspaper"></i> <?= $post['title'] ?></h2>
+            <span class="blog-post-meta"><i class="far fa-clock"> le <?= $post['creation_date_fr'] ?></i></span>
             <p><?= $post['content'] ?></p>
         </div>
-
-
+        <br>
+        <h2><i class="fas fa-comments"></i> les commentaires :</h2>
     <form action="index.php?action=addComment&amp;id=<?= $post['id']?>" method="post">
         <div class="form-group">
-            <label for="author"></label>
+            <label for="author">Pseudo</label>
             <input type="text" class="form-control" id="author" name="author" placeholder="votre pseudo"/>
         </div>
         <div class="form-group">
@@ -18,6 +20,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Validez</button>
     </form>
+        <br>
 
     <br>
 
@@ -41,6 +44,7 @@
 <?php
     }
     ?>
+</div>
 </div>
 <?php $content = ob_get_clean(); ?>
 

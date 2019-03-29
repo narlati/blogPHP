@@ -17,12 +17,24 @@ a
     max-width: 2048px;
     overflow: hidden;
 }
- img {
-     height: 100%;
-     width: 103%;
- }
+
+
+.bg1 {
+    background-image: url(https://image.freepik.com/photos-gratuite/reserver-salle-bibliotheque_36325-102.jpg);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-position: center center;
+    background-size: cover;
+    max-height: 700px;
+}
+
 .main {
-    padding-top: 10px;
+    padding-top: 500px;
+    background-color: #e5e5e5;
+    height: 100%;
 }
 
 .error {
@@ -30,4 +42,11 @@ a
     height : 400px;
     padding-top: 200px;
     font-size: 20px;
+}
+
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 150px;
+    white-space: normal;
 }

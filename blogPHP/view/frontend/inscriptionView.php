@@ -1,4 +1,5 @@
 <?php ob_start(); ?>
+<div class="shadow-lg p-3 mb-5 bg-white rounded offset-md-1 col-md-10">
 <p><a href="index.php">ACCUEIL</a></p>
 
 <p>Remplissez le formulaire suivant pour vous inscrire :</p>
@@ -24,6 +25,7 @@
         <input type="submit" value="Confirmez l'inscription." />
     </div>
 </form>
+</div>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('view/frontend/template.php'); ?>

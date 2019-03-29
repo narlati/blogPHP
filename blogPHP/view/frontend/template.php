@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Jean Forteroche</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="public/css/style.css" rel="stylesheet"/>
 </head>
@@ -39,11 +40,17 @@ else { ?>
         </ul>
     </div>
 </nav>
-<div class="bg">
-    <img src="public/images/background.png" alt="background-writer-content">
-</div>
+
+    <div class="bg1" ></div>
 <div class="main">
 <?= $content ?>
 </div>
+
+<footer class="page-footer font-small text-white bg-dark">
+
+    <div class="footer-copyright text-center py-3">© 2019 Copyright: Jean Forteroche
+    </div>
+
+</footer>
 </body>
 </html>

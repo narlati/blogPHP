@@ -121,13 +121,13 @@ function verificationConnectionLog($pseudo, $password)
     $inscriptionManager = new \OpenClassrooms\Blog\Model\InscriptionManager();
     if (!is_string($pseudo))
     {
-        throw new Exception('Mauvais pseudo ou mot de passe.');
+        throw new Exception('erreur identifiant et/ou mot de passe.');
     }
 
     $pseudo = trim($pseudo);
     $login = $inscriptionManager->verifyLogin($pseudo, $password);
     if ($login === false) {
-        throw new Exception('Mauvais pseudo ou mot de passe.');
+        throw new Exception('erreur identifiant et/ou mot de passe.');
     }
     else {
         header('Location: index.php');

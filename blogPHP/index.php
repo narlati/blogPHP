@@ -21,7 +21,7 @@ try {
                     addComment($_GET['id'], $_POST['author'], $_POST['comment']);
                 }
                 else {
-                    throw new Exception('Tous les champs ne sont pas remplis !');
+                    throw new Exception('Vous devez mettre un pseudo et un commentaire');
                 }
             }
             else {
@@ -30,9 +30,10 @@ try {
         }
         elseif ($_GET['action'] == 'reportComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['idp']) && $_GET['idp'] > 0) {
-                    reportComment($_GET['id'], $_GET['idp']);
+                reportComment($_GET['id'], $_GET['idp']);
             }
             else {
+
                 throw new Exception('bad url');
             }
         }
@@ -160,5 +161,9 @@ catch(Exception $e) {
     elseif ($e->getMessage() === 'Tous les champs ne sont pas remplis !')
     {
         require('view/frontend/redactionView.php');
+    }
+    elseif ($e->getMessage() === 'Vous devez mettre un pseudo et un commentaire')
+    {
+        post($_GET['id']);
     }
 }
